@@ -1,0 +1,12 @@
+[intro]
+
+show of hands for those who
+  - know what JS is
+  - know what node is
+  - know the difference between the two
+
+[give brief intro depending on results]
+
+[will try to be clear about which execution context]
+
+       

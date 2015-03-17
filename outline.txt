@@ -1,0 +1,83 @@
+
+Categorize tools
+
+Online playground
+  Codepen.io
+  jsfiddle.net
+
+
+Task runners
+  grunt, gulp, broccoli
+
+
+Module management
+
+  CommonJS - synchronous loading, node pattern
+
+  RequireJS - frontend, asynchronous loading
+
+
+Package/dependency management
+
+  NPM
+
+  Bower
+
+  Webpack
+
+
+Web app frameworks
+  https://strongloop.com/strongblog/compare-express-restify-hapi-loopback/
+  Restify
+
+  Hapi
+
+  Express
+
+
+Frameworks as a tool
+
+  React - flux, virtual DOM
+
+  Famo.us - render tree, 3d transforms, solid browser animations.
+
+  Angular - DI, ease of testing, modularity
+
+  Meteor
+
+
+Preprocessors
+
+  Tracer
+
+  TypeScript
+
+  Coffeescript
+
+
+Testing
+
+  Jest
+
+  Test runners - mocha, jasmine
+
+
+  Fakes, spies
+
+  Frontend - karma, webdriver
+
+  Fiveby
+
+
+Code quality
+
+
+Generators
+
+  Yeoman
+
+Everything else
+
+Hardware - modularity, narrow interfaces
+
+Video games - object composition
