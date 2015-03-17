@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="demo_app/main.css" />
+  </head>
+
+  <body>
+    <div class="main"></div>
+
+    <script type="text/template" id="mainWellTmpl">
+      <div class="well"><%= msg %></div>
+      <ul class="main-nav">
+        <li><a href="#page1">Page 1</a></li>
+        <li><a href="#page2">Page 2</a></li>
+        <li><a href="#page3">Page 3</a></li>
+      </ul>
+    </script>
+
+    <script src="bower_components/jquery/dist/jquery.min.js" data-main="app.js"></script>
+    <script src="node_modules/requirejs/require.js" data-main="app.js"></script>
+  </body>
+</html>

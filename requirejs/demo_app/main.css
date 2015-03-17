@@ -1,0 +1,7 @@
+.main-nav li {
+  list-style-type: none;
+  display: inline-block;
+  background-color: #efefef;
+  padding: 8px 10px;
+  margin-right: 10px;
+}
