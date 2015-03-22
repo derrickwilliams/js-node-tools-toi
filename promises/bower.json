@@ -1,0 +1,20 @@
+{
+  "name": "promises",
+  "version": "0.0.0",
+  "homepage": "https://github.com/derrickwilliams/js-node-tools-toi",
+  "authors": [
+    "DerrickW <derrickawilliams@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bluebird": "~2.9.14",
+    "jquery": "~2.1.3"
+  }
+}
