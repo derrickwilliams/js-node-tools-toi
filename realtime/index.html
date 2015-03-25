@@ -1,0 +1,23 @@
+<html>
+  <body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      (function() {
+        var connection = io.connect();
+
+        connection.emit('ready');
+        connection.on('readyAck', function() {
+          console.log('ready acknowledged. time to rock \'n roll!', arguments);
+        });
+
+        connection.emit('user:retrieve', function() {
+          console.log('emit user:retrieve', arguments);
+        });
+
+        connection.on('user:retrieved', function() {
+          console.log('on user:retrieved', arguments);
+        });
+      }());
+    </script>
+  </body>
+</html>

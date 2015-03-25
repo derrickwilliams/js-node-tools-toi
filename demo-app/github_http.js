@@ -13,11 +13,22 @@
 
     options = _.extend(defaults, options);
 
-    console.log('ajax options', options);
-
     return $.ajax(options)
-      .success(function() {
-        console.log('httpSuccess', arguments);
+      .success(function(results) {
+        var key, urls = [];
+
+        $('#json').html('<pre>' + JSON.stringify(results, null, 2) + '</pre>');
+
+        for(key in results) {
+          if (results.hasOwnProperty(key) && /_url$/.test(key)) {
+            urls.push({ key: key, url: results[key]});
+          }
+        }
+
+        // display list
+        _.each(urls, function(url) {
+          $('#urls').append($('<div />').append($('<a />').attr('href', url.url).text(url.key)));
+        });
       })
       .error(function() {
         console.error('httpError', arguments);

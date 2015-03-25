@@ -1,0 +1,28 @@
+<html>
+  <body>
+    <h1>connected users: <span class="counter-number"></span></h1>
+
+    <script src="/jquery.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      (function() {
+        var connection = io.connect();
+
+        connection.emit('user:connected');
+
+        connection.on('connection:acknowledged', function(myConnection) {
+          console.log('connection acknowledged', myConnection);
+        });
+
+        connection.on('connection:count:updated', function(updatedResults) {
+          console.log('connection count updated', updatedResults.count);
+        });
+
+        window.beforeunload = function() {
+          alert('you are leaving');
+        };
+
+      }());
+    </script>
+  </body>
+</html>

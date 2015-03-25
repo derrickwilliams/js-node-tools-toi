@@ -1,6 +1,21 @@
 (function($, _, ghHttp, global) {
   'use strict';
 
+  var ghHttp = function(options) {
+    var defaults;
+
+    defaults = {
+      headers: {
+        'Authorization': 'token b236bcfe56b08c90cb2269605f51bf958166ce30'
+      },
+      method: 'GET'
+    };
+
+    options = _.extend(defaults, options);
+
+    return $.ajax(options)
+  };
+
   var
     apiUrl = 'https://api.github.com/';
 
@@ -18,7 +33,6 @@
     };
 
     return ghHttp(getOptions);
-      // .then(prepareUserData);
   }
 
   function getUserRepos(user) {
