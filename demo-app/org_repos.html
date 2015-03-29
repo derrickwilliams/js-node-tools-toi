@@ -1,0 +1,98 @@
+<html>
+<head>
+  <link rel="stylesheet" href="bower_components/pretty-json.css" />
+</head>
+<body>
+
+<button id="loadUserInfo">Load Info</button>
+
+<h1>Organizations</h1>
+<div id="orgs"></div>
+
+<h1>Teams</h1>
+<div id="teams"></div>
+
+<script src="lodash.js"></script>
+<script src="jquery.js"></script>
+<script src="github_http.js"></script>
+<script src="bower_components/backbone/backbone.js"></script>
+<script src="bower_components/pretty-json.js"></script>
+
+<script>
+
+  function renderOrgsList(el, orgs) {
+    var items = [];
+
+    _.each(orgs, function(org) {
+      items.push(
+        $('<li />')
+          .append(
+            $('<a />')
+              .attr('href', org.repos_url)
+              .text(org.login)
+          )
+      )
+
+    });
+
+    el.append(items);
+  }
+
+  function renderTeamsList(el, teams) {
+    var items = [];
+
+    _.each(teams, function(team) {
+      items.push(
+        $('<li />')
+          .text(team.name)
+      );
+    });
+
+    el.append(items);
+  }
+
+  (function() {
+    $(start);
+
+    var gh = ghHttp;
+
+
+    function start() {
+      $('#loadUserInfo').on('click', function(e) {
+        e.preventDefault();
+        getUser();
+      });
+    }
+
+    function getUser(username) {
+      gh({ url: '/user' })
+        .success(function(response) {
+          gh({ url: response.organizations_url })
+            .success(function(orgs) {
+              renderOrgsList($('#orgs'), orgs);
+            })
+            .error(function(err) {
+              alert('Get Orgs error!');
+              console.log('Get Orgs error', err);
+            })
+
+          gh({ url: '/user/teams' })
+            .success(function(teams) {
+              renderTeamsList($('#teams'), teams);
+            })
+            .error(function(err) {
+              alert('Get Teams error!');
+              console.log('Get Teams error', err);
+            });
+        })
+        .error(function(err, b, c) {
+          debugger
+        });
+    }
+
+  })();
+
+</script>
+
+</body>
+</html>
