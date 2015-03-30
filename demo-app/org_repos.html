@@ -11,6 +11,8 @@
 
 <h1>Teams</h1>
 <div id="teams"></div>
+<h2>Repos</h2>
+<div id="repos"></div>
 
 <script src="lodash.js"></script>
 <script src="jquery.js"></script>
@@ -22,7 +24,6 @@
 
   function renderOrgsList(el, orgs) {
     var items = [];
-
     _.each(orgs, function(org) {
       items.push(
         $('<li />')
@@ -34,28 +35,44 @@
       )
 
     });
-
-    el.append(items);
+    el.html(items);
   }
 
   function renderTeamsList(el, teams) {
+    el.off('click').on('click', function(e) {
+      e.preventDefault();
+      var href = e.target.href;
+      ghHttp({ url: href })
+        .error(function(err) {
+          debugger
+        })
+        .then(function(repos) {
+          renderTeamsList($('#repos'), repos);
+        });
+
+    });
+
     var items = [];
 
     _.each(teams, function(team) {
       items.push(
         $('<li />')
-          .text(team.name)
+          .append(
+            $('<a />')
+              .attr('href', team.repositories_url)
+              .text(team.name)
+          )
+
       );
     });
 
-    el.append(items);
+    el.html(items);
   }
 
   (function() {
     $(start);
 
     var gh = ghHttp;
-
 
     function start() {
       $('#loadUserInfo').on('click', function(e) {
@@ -67,26 +84,32 @@
     function getUser(username) {
       gh({ url: '/user' })
         .success(function(response) {
-          gh({ url: response.organizations_url })
+          var orgs = gh({ url: response.organizations_url })
             .success(function(orgs) {
-              renderOrgsList($('#orgs'), orgs);
+              console.log('success');
             })
             .error(function(err) {
-              alert('Get Orgs error!');
               console.log('Get Orgs error', err);
             })
+            .then(function(orgs) {
+              console.log('get orgs then');
+              return orgs;
+            });
+
+          orgs.done(function(orgs) {
+            renderOrgsList($('#orgs'), orgs);
+          });
 
           gh({ url: '/user/teams' })
-            .success(function(teams) {
+            .done(function(teams) {
               renderTeamsList($('#teams'), teams);
             })
             .error(function(err) {
-              alert('Get Teams error!');
               console.log('Get Teams error', err);
             });
         })
-        .error(function(err, b, c) {
-          debugger
+        .error(function(err) {
+          console.log('Get User error', err);
         });
     }
 
