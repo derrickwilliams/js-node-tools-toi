@@ -1,0 +1,22 @@
+<html>
+	<body>
+
+		<div id="widg"></div>
+
+		<script src="bower_components/paperboy/paperboy.js"></script>
+		<script src="bower_components/zepto/zepto.js"></script>
+		<script src="widget.js"></script>
+
+		<script>
+			$(function() {
+				var w = SearchWidget($('#widg'));
+
+				w.render();
+				w.on('search:submitted', function(p) {
+					console.log(p);
+				})
+			});
+		</script>
+	</body>
+
+</html>

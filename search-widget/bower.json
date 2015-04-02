@@ -1,0 +1,20 @@
+{
+  "name": "search-widget",
+  "version": "0.0.0",
+  "homepage": "https://github.com/derrickwilliams/js-node-tools-toi",
+  "authors": [
+    "DerrickW <derrickawilliams@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "paperboy": "~1.3.2",
+    "zepto": "~1.1.6"
+  }
+}
